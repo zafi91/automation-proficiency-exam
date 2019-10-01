@@ -40,7 +40,10 @@ class SelenuimInfra{
                     element = await this.driver.findElement(By[locatorType](locatorValue))
                 }
             }
+            this.driver.sleep(2000)
             await element.click()
+            this.driver.sleep(2000)
+            
             console.log(`Clicked on element with ${locatorType} = ${locatorValue}`)
         }
         catch (error) {
@@ -78,10 +81,11 @@ class SelenuimInfra{
                 }
             }
             console.log(`Get text from element with ${locatorType} = ${locatorValue} `)
-            return element.getText()
+            return await element.getText()
         }
         catch (error) {
             console.error(`Got error while trying to get text from element with ${locatorType} = ${locatorValue}`)
+            console.log(error)
             return ""
         }
     }
@@ -131,7 +135,7 @@ class SelenuimInfra{
         catch{
             console.error(`Got error while trying to find element with ${locatorType} = ${locatorValue}`)
         }
-
+        return element
     }
 
 // Find all the elements with the same type and value and return array(list)
@@ -149,7 +153,6 @@ class SelenuimInfra{
         catch{
             console.error(`Got error while trying to find element with ${locatorType} = ${locatorValue}`)
         }
-
     }
 
 }
